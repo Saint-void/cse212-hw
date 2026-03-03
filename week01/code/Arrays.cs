@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 public static class Arrays
 {
     /// <summary>
@@ -12,8 +15,23 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        
+        // Plan:
+        // 1. Create a new array of doubles with the size equal to the 'length' parameter.
+        // 2. Use a loop that starts at index 0 and iterates 'length' times.
+        // 3. Inside the loop, calculate the multiple. Since the index starts at 0 but we want 
+        //    the first multiple to be number * 1, we multiply 'number' by (index + 1).
+        // 4. Assign this calculated value to the array at the current index.
+        // 5. After the loop finishes, return the completed array.
 
-        return []; // replace this return statement with your own
+        double[] multiplesArray = new double[length];
+
+        for (int i = 0; i < length; i++)
+        {
+            multiplesArray[i] = number * (i + 1);
+        }
+
+        return multiplesArray; 
     }
 
     /// <summary>
@@ -29,5 +47,21 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        
+        // Plan:
+        // 1. Determine the index where the list needs to be split. This is calculated 
+        //    by taking the total count of the list and subtracting the 'amount' to rotate.
+        // 2. Use the GetRange method to extract the sublist of items that need to be moved 
+        //    to the front of the list (from the split index to the end).
+        // 3. Use the RemoveRange method to remove those extracted items from the end 
+        //    of the original list so they aren't duplicated.
+        // 4. Use the InsertRange method to insert the extracted sublist at the very 
+        //    beginning of the original list (index 0).
+
+        int splitIndex = data.Count - amount;
+        
+        List<int> itemsToMove = data.GetRange(splitIndex, amount);
+        data.RemoveRange(splitIndex, amount);
+        data.InsertRange(0, itemsToMove);
     }
 }

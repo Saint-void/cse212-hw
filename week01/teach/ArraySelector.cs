@@ -11,6 +11,26 @@ public static class ArraySelector
 
     private static int[] ListSelector(int[] list1, int[] list2, int[] select)
     {
-        return [];
+        // Create a result array exactly the same size as the select array
+        int[] result = new int[select.Length];
+        
+        int index1 = 0; // Keeps track of where we are in list1
+        int index2 = 0; // Keeps track of where we are in list2
+
+        for (int i = 0; i < select.Length; i++)
+        {
+            if (select[i] == 1)
+            {
+                result[i] = list1[index1];
+                index1++; // Move to the next number in list1
+            }
+            else if (select[i] == 2)
+            {
+                result[i] = list2[index2];
+                index2++; // Move to the next number in list2
+            }
+        }
+
+        return result;
     }
 }
